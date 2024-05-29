@@ -1,6 +1,8 @@
 # trial_feature
 
-This is a flutter Project showcasing a certain features working with -[William Bryants](https://github.com/bryantwilliam).
+This is a flutter Project showcasing a certain features working with
+
+ -[William Bryants](https://github.com/bryantwilliam).
 
 Riverpod State management was used.
 Riverpod opinionated architecture -[Andrea Bizzoto] was used to design the feature
