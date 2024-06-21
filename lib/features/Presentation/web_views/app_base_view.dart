@@ -30,23 +30,22 @@ class _WebArticleState extends ConsumerState<WebArticle> {
     final article = ref.watch(oneArticleControllerProvider);
     final readProgress = ref.watch(readProgressControllerProvider).value;
     return Scaffold(
-      body: Column(
+      body: ListView(
+        shrinkWrap: true,
         children: [
           Container(
             width: width,
             height: 60,
             decoration: const BoxDecoration(color: Colors.black),
           ),
-          Expanded(
-            child: SizedBox(
+          // Expanded(
+          //   child: 
+            SizedBox(
               width: width,
               height: MediaQuery.of(context).size.height / 1.13,
               child: Row(
                 children: [
-                  // Center(
-                  //   child: Text(width.toString()),
-                  // ),
-                  Container(
+                      Container(
                       width: 270,
                       color: Colors.white,
                       child: ListView.builder(
@@ -99,6 +98,8 @@ class _WebArticleState extends ConsumerState<WebArticle> {
                         },
                       )),
                   const SizedBox(width: 50),
+
+                  ///These are the main Page.
                   SizedBox(
                     height: height / 1.05,
                     width: width / 1.5,
@@ -107,59 +108,64 @@ class _WebArticleState extends ConsumerState<WebArticle> {
                       children: [
                         Row(
                           children: [
-                            SizedBox(
-                              height: height / 1.05,
-                              width: width / 2.50,
-                              child: Column(
-                                children: [
-                                  Text('Articles List',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineMedium!
-                                          .copyWith(fontWeight: FontWeight.bold)),
-                                  const SizedBox(
-                                    height: 40,
-                                  ),
-                                  SizedBox(
-                                      height: height / 1.29,
-                                      width: width / 2.0,
-                                      child: state.when(
-                                          data: (articles) => GridView.builder(
-                                              itemCount: articles.length,
-                                              gridDelegate:
-                                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                                      crossAxisCount: 2,
-                                                      childAspectRatio: 3.0,
-                                                      mainAxisSpacing: 3.0,
-                                                      crossAxisSpacing: 4.0),
-                                              itemBuilder: (context, index) {
-                                                return WebArticleTile(
-                                                  title: articles[index].title,
-                                                  priority:
-                                                      articles[index].priority,
-                                                  image: articles[index].image,
-                                                  date: articles[index].date,
-                                                  isStarred:
-                                                      articles[index].starred,
-                                                  readProgress: readProgress![
-                                                          articles[index].id] ??
-                                                      0.0,
-                                                  ontap: () {
-                                                    ref
-                                                        .read(
-                                                            oneArticleControllerProvider
-                                                                .notifier)
-                                                        .getOneArticle(
-                                                            index: index);
-                                                  },
-                                                );
-                                              }),
-                                          error: (e, _) => Text(e.toString()),
-                                          loading: () => const Center(
-                                                child:
-                                                    CircularProgressIndicator(),
-                                              )))
-                                ],
+                            SingleChildScrollView(
+                              child: SizedBox(
+                                height: height / 1.05,
+                                width: width / 2.50,
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  children: [
+                                    Text('Articles List',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium!
+                                            .copyWith(fontWeight: FontWeight.bold)),
+                                    const SizedBox(
+                                      height: 40,
+                                    ),
+                                    SizedBox(
+                                        height: height / 1.29,
+                                        width: width / 2.0,
+                                        child: state.when(
+                                            data: (articles) => GridView.builder(
+                                                itemCount: articles.length,
+                                                gridDelegate:
+                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                        crossAxisCount: 2,
+                                                        childAspectRatio: 3.0,
+                                                        mainAxisSpacing: 3.0,
+                                                        crossAxisSpacing: 4.0),
+                                                itemBuilder: (context, index) {
+                                                  return 
+                                                     WebArticleTile(
+                                                      title: articles[index].title,
+                                                      priority:
+                                                          articles[index].priority,
+                                                      image: articles[index].image,
+                                                      date: articles[index].date,
+                                                      isStarred:
+                                                          articles[index].starred,
+                                                      readProgress: readProgress![
+                                                              articles[index].id] ??
+                                                          0.0,
+                                                      ontap: () {
+                                                        ref
+                                                            .read(
+                                                                oneArticleControllerProvider
+                                                                    .notifier)
+                                                            .getOneArticle(
+                                                                index: index);
+                                                      },
+                                                    );
+                                                  
+                                                }),
+                                            error: (e, _) => Text(e.toString()),
+                                            loading: () => const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                )))
+                                  ],
+                                ),
                               ),
                             ),
                             const SizedBox(
@@ -196,7 +202,7 @@ class _WebArticleState extends ConsumerState<WebArticle> {
                 ],
               ),
             ),
-          ),
+        //  ),
         ],
       ),
     );
