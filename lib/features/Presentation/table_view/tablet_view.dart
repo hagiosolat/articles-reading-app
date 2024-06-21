@@ -30,7 +30,8 @@ class _TabletArticleState extends ConsumerState<TabletArticle> {
     final article = ref.watch(oneArticleControllerProvider);
     final readProgress = ref.watch(readProgressControllerProvider).value;
     return Scaffold(
-      body: Column(
+      body: ListView(
+        shrinkWrap: true,
         children: [
           Container(
             width: width,
@@ -98,7 +99,9 @@ class _TabletArticleState extends ConsumerState<TabletArticle> {
                         );
                       },
                     )),
-                const SizedBox(width: 5),
+                const SizedBox(width: 30),
+
+                ///This is the main page
                 SizedBox(
                   height: height / 1.05,
                   width: width / 1.3,
@@ -110,7 +113,8 @@ class _TabletArticleState extends ConsumerState<TabletArticle> {
                           SizedBox(
                             height: height / 1.05,
                             width: width / 2.50,
-                            child: Column(
+                            child: ListView(
+                              shrinkWrap: true,
                               children: [
                                 Text('Articles List',
                                     style: Theme.of(context)

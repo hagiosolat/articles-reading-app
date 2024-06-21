@@ -26,9 +26,8 @@ class WebArticleTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
     return Container(
-      height: height / 9,
+      height: 100,
       width: width / 8,
       decoration: BoxDecoration(
         color: Colors.white,

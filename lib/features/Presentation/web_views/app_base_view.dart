@@ -99,7 +99,7 @@ class _WebArticleState extends ConsumerState<WebArticle> {
                       )),
                   const SizedBox(width: 50),
 
-                  ///These are the main Page.
+                  ///ThIS is the main Page.
                   SizedBox(
                     height: height / 1.05,
                     width: width / 1.5,
