@@ -88,12 +88,74 @@ class _ArticleDetailsState extends ConsumerState<ArticleDetails> {
                   pinned: true,
                   centerTitle: false,
                   bottom: PreferredSize(
-                    preferredSize: const Size.fromHeight(1),
-                    child: LinearProgressIndicator(
-                      value: _progress,
-                      backgroundColor: Colors.lightGreen,
-                      valueColor:
-                          const AlwaysStoppedAnimation<Color>(Colors.blue),
+                    preferredSize: const Size.fromHeight(70),
+                    child: Column(
+                      children: [
+                        LinearProgressIndicator(
+                          value: _progress,
+                          backgroundColor: Colors.lightGreen,
+                          valueColor:
+                              const AlwaysStoppedAnimation<Color>(Colors.blue),
+                        ),
+
+                       Text(
+                            widget.title ?? '',
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 7, vertical: 5),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(9),
+                                      color: widget.priority == 'high'
+                                          ? highBoxColor.withOpacity(0.2)
+                                          : widget.priority == 'medium'
+                                              ? mediumBoxColor.withOpacity(0.2)
+                                              : widget.priority == 'low'
+                                                  ? lowBoxColor.withOpacity(0.2)
+                                                  : Colors.grey.withOpacity(0.2)),
+                                  child: Text(
+                                    '${widget.priority} priority',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                            color: widget.priority == 'high'
+                                                ? highBoxColor
+                                                : widget.priority == 'medium'
+                                                    ? mediumBoxColor
+                                                    : widget.priority == 'low'
+                                                        ? lowBoxColor
+                                                        : Colors.grey,
+                                            fontSize: 10),
+                                  ),
+                                ),
+                                const Text('Latest'),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.access_time_outlined,
+                                      size: 15,
+                                    ),
+                                    Text(
+                                      'In Progress',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                 ),
@@ -103,60 +165,7 @@ class _ArticleDetailsState extends ConsumerState<ArticleDetails> {
                       padding: const EdgeInsets.all(9.0),
                       child: Column(
                         children: [
-                          Text(
-                            widget.title ?? '',
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 7, vertical: 5),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(9),
-                                    color: widget.priority == 'high'
-                                        ? highBoxColor.withOpacity(0.2)
-                                        : widget.priority == 'medium'
-                                            ? mediumBoxColor.withOpacity(0.2)
-                                            : widget.priority == 'low'
-                                                ? lowBoxColor.withOpacity(0.2)
-                                                : Colors.grey.withOpacity(0.2)),
-                                child: Text(
-                                  '${widget.priority} priority',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(
-                                          color: widget.priority == 'high'
-                                              ? highBoxColor
-                                              : widget.priority == 'medium'
-                                                  ? mediumBoxColor
-                                                  : widget.priority == 'low'
-                                                      ? lowBoxColor
-                                                      : Colors.grey,
-                                          fontSize: 10),
-                                ),
-                              ),
-                              const Text('Latest'),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.access_time_outlined,
-                                    size: 15,
-                                  ),
-                                  Text(
-                                    'In Progress',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .copyWith(fontSize: 10),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          
                           const SizedBox(height: 10),
                           Center(
                             child: Image.network(
