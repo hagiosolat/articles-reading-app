@@ -10,10 +10,34 @@ class WebArticlesScreen extends ConsumerWidget {
 
   @override
   Widget build(context, WidgetRef ref) {
+    final ancestorScaffold = Scaffold.maybeOf(context);
     return DefaultTabController(
       length: 3,
       initialIndex: 0,
       child: Scaffold(
+         drawer: Drawer(child: ListView(children: [
+           ListTile(
+              leading: const Icon(Icons.article_outlined),
+              title: const Text('Articles'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+             ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Priority View'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+             ListTile(
+              leading: const Icon(Icons.folder),
+              title: const Text('Folder Structure'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+         ],),), 
         body:CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -26,10 +50,21 @@ class WebArticlesScreen extends ConsumerWidget {
                        searchField(
                   ref,
                 ),
-                const SizedBox(height: 20),
-                const Padding(
-                  padding: EdgeInsets.only(left: 40),
-                  child:  Text('Categories')),
+               
+                 
+                    Row(
+                    children: [
+                        IconButton(icon: const Icon(Icons.menu),
+                    onPressed: (){
+                      print('scaffod button');
+                      ancestorScaffold?.openDrawer();
+                    },
+                     ),
+                     const SizedBox(width: 30,),
+                     const Text('Categories'),
+                    ],
+                  ),
+                  
                 const TabBar(isScrollable: true, tabs: [
                   Tab(text: 'All'),
                   Tab(text: 'Priority'),

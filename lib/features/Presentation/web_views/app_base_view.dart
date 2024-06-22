@@ -38,8 +38,6 @@ class _WebArticleState extends ConsumerState<WebArticle> {
             height: 60,
             decoration: const BoxDecoration(color: Colors.black),
           ),
-          // Expanded(
-          //   child: 
             SizedBox(
               width: width,
               height: MediaQuery.of(context).size.height / 1.13,
